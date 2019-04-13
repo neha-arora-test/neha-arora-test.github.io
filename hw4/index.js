@@ -7,12 +7,10 @@ const HOSTED_URLS = {
 };
 
 const examples = {
-  'example1':
-      'Alice was beginning to get very tired of sitting by her sister on the bank.',
-  'example2':
-      'Buda-Pesth seems a wonderful place.',
-  'example3':
-      'Scepticism was as much the result of knowledge, as knowledge is of scepticism.'      
+  'example1': "Mrs. Martin had told her one day (and there was a blush as she said it) that it was impossible for anybody to be a better son and therefore she was sure, whenever he married, he woudl make a good husband."
+  'example2': "Enter Rosse, with an old man."
+  'example3': "If you'll excuse me, he said, I think I will go home."
+  'example4': "Peace is despaired; For who can think submission?"
 };
 
 function status(statusText) {
