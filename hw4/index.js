@@ -6,6 +6,13 @@ const HOSTED_URLS = {
       'model_js/metadata.json'
 };
 
+const book_names = {
+  "1": "Peter Pan", 
+  "2": "Pride and Prejudice",
+  "3": "Moby Dick",
+  "4": "A Tale of Two Cities"
+}
+
 const examples = {
   'example1': "Mrs. Martin had told her one day (and there was a blush as she said it) that it was impossible for anybody to be a better son and therefore she was sure, whenever he married, he would make a good husband.",
   'example2': "Enter Rosse, with an old man.",
@@ -15,7 +22,7 @@ const examples = {
 
 function status(statusText) {
   console.log(statusText);
-  document.getElementById('status').textContent = statusText;
+  document.getElementById('status').innerHTML = statusText;
 }
 
 function showMetadata(metadataJSON) {
@@ -45,7 +52,7 @@ function doPredict(predict) {
   const result = predict(textField.value);
   score_string = "Class scores: ";
   for (var x in result.score) {
-    score_string += x + " ->  " + result.score[x].toFixed(4) + ", "
+    score_string += book_names[x] + " ->  " + result.score[x].toFixed(4) + "<br>"
   }
   //console.log(score_string);
   status(
