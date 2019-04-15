@@ -39,12 +39,20 @@ function disableLoadModelButtons() {
   document.getElementById('load-model').style.display = 'none';
 }
 
+function scale(n) {
+  return parseInt(n*255.0);
+}
+
 function doPredict(predict) {
   const textField = document.getElementById('text-entry');
   const result = predict(textField.value);
   color_string = "RGB values: ";
   console.log(result.score);
   var r = result.score[0], g = result.score[1], b = result.score[2];
+  r = scale(r);
+  g = scale(g);
+  b = scale(b);
+  
   console.log("r: " + r + ", g: " + g + ", b: b");
   status(
       score_string + r + ',' + g + ',' + b + '<br>' + 'Elapsed: ' + result.elapsed.toFixed(4) + ' ms');
