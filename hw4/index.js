@@ -62,11 +62,13 @@ function doPredict(predict) {
 
 function prepUI(predict) {
   setPredictFunction(predict);
+  /*
   const testExampleSelect = document.getElementById('example-select');
   testExampleSelect.addEventListener('change', () => {
     settextField(examples[testExampleSelect.value], predict);
   });
   settextField(examples['example1'], predict);
+  */
 }
 
 async function urlExists(url) {
