@@ -50,13 +50,20 @@ function disableLoadModelButtons() {
 function doPredict(predict) {
   const textField = document.getElementById('text-entry');
   const result = predict(textField.value);
-  score_string = "Class scores: ";
+  //score_string = "Class scores: <br>";
+  var table = "<table>";
+  
   for (var x in result.score) {
-    score_string += book_names[x] + " ->  " + result.score[x].toFixed(4) + "<br>"
+    table += "<tr style='padding:20px'>";
+    table += "<td>"+book_names[x] +"</td><td>"+result.score[x].toFixed(4)+"</td>";
+    //score_string += x + ") " + book_names[x] + " ->  " + result.score[x].toFixed(4) + "<br>"
+    table += </tr>;
   }
+  table += "</table>"
+  
   //console.log(score_string);
   status(
-      score_string + ' elapsed: ' + result.elapsed.toFixed(4) + ' ms)');
+      table + '<p>Elapsed: ' + result.elapsed.toFixed(4) + ' ms</p>');
 }
 
 function prepUI(predict) {
