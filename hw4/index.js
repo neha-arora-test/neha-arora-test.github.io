@@ -7,10 +7,10 @@ const HOSTED_URLS = {
 };
 
 const book_names = {
-  "1": "Austen Emma", 
-  "2": "Shakespeare",
-  "3": "Moby Dick",
-  "4": "Bible"
+  "0": "Austen Emma", 
+  "1": "Shakespeare",
+  "2": "Moby Dick",
+  "3": "Bible"
 }
 
 const examples = {
