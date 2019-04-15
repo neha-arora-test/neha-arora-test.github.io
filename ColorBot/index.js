@@ -62,11 +62,13 @@ function doPredict(predict) {
 
 function prepUI(predict) {
   setPredictFunction(predict);
+  /*
   const testExampleSelect = document.getElementById('example-select');
   testExampleSelect.addEventListener('change', () => {
     settextField(examples[testExampleSelect.value], predict);
   });
   settextField(examples['example1'], predict);
+  */
 }
 
 async function urlExists(url) {
@@ -127,7 +129,7 @@ class Classifier {
     const inputText =
         text.trim().toLowerCase().replace(/(\.|\,|\!)/g, '').split(' ');
     // Look up word indices.
-    const inputBuffer = tf.buffer([1, this.maxLen], 'float32');
+    const inputBuffer = tf.buffer([0, this.maxLen], 'float32');
     for (let i = 0; i < inputText.length; ++i) {
       const word = inputText[i];
       inputBuffer.set(this.wordIndex[word], 0, i);
