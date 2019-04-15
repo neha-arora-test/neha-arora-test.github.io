@@ -57,7 +57,7 @@ function doPredict(predict) {
     table += "<tr style='padding:20px'>";
     table += "<td>"+book_names[x] +"</td><td>"+result.score[x].toFixed(4)+"</td>";
     //score_string += x + ") " + book_names[x] + " ->  " + result.score[x].toFixed(4) + "<br>"
-    table += </tr>;
+    table += "</tr>";
   }
   table += "</table>"
   
