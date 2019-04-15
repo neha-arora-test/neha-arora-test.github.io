@@ -57,7 +57,7 @@ function doPredict(predict) {
   console.log("r: " + r + ", g: " + g + ", b: b");
   status(
       score_string + r + ',' + g + ',' + b + ')<br>' + 'Elapsed: ' + result.elapsed.toFixed(4) + ' ms');
-  color();
+  color(r, g, b);
 }
 
 function prepUI(predict) {
