@@ -10,43 +10,38 @@
     }
   </style>
   <h1>
-    Generate color
+    Detect book from text
   </h1>
   <hr>
-  <div class="create-model" style="padding:20px">
-    <button id="load-model" style="display:none">Load model</button>
+  <div class="create-model">
+    <button id="load-model" style="display:none; padding:10px">Load model</button>
   </div>
   <div>
-    <div>
+    <div style="padding:10px">
       <span>Vocabulary size: </span>
       <span id="vocabularySize"></span>
     </div>
-    <div>
+    <div style="padding:10px">
       <span>Max length: </span>
       <span id="maxLen"></span>
     </div>
   </div>
   <hr>
-  
-  <div style="padding:20px">
-  Enter color name you would like to generate: &nbsp;&nbsp;&nbsp;
+  <div style="padding:10px">
+    <select id="example-select" class="form-control">
+      <option value="example1">Austen Emma</option>
+      <option value="example2">Shakespeare</option>
+      <option value="example3">Moby Dick</option>
+      <option value="example3">Bible</option>
+    </select>
+  </div>
+  <div style="padding:10px">
     <textarea id="text-entry"></textarea>
-    <div class="create-model" style="padding:20px">
-      <button id="display-color">Display</button>
-    </div>
   </div>
   <hr>
-  
-  <div class="input-color">
-    
-    <div id="color-space" style="float:left; width:100px; height:100px; margin:5px; border:1px solid black; background-color:white;"></div>
+  <div style="padding:10px">
+    <span id="status">Standing by.</span>
   </div>
-  
-  <div  style="margin-top:10%">
-    <div id="status">Standing by.</div>
-  </div>
-  
-  
 
   <script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js'></script>
   <script src='index.js'></script>

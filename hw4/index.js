@@ -6,11 +6,19 @@ const HOSTED_URLS = {
       'model_js/metadata.json'
 };
 
-function color(r, g, b) {
-  var color = "rgb(" + r + "," + g + "," + b + ")";
-  document.getElementById('color-space').style.backgroundColor=color;
+const book_names = {
+  "0": "Austen Emma", 
+  "1": "Shakespeare",
+  "2": "Moby Dick",
+  "3": "Bible"
 }
 
+const examples = {
+  'example1': "Mrs. Martin had told her one day (and there was a blush as she said it) that it was impossible for anybody to be a better son and therefore she was sure, whenever he married, he would make a good husband.",
+  'example2': "Enter Rosse, with an old man.",
+  'example3': "If you'll excuse me, he said, I think I will go home.",
+  'example4': "God is our refuge and strength, an ever-present help in trouble."
+};
 
 function status(statusText) {
   console.log(statusText);
@@ -31,44 +39,40 @@ function settextField(text, predict) {
 }
 
 function setPredictFunction(predict) {
-  const colorButton = document.getElementById('display-color');
-  colorButton.addEventListener('click', () => doPredict(predict));
+  const textField = document.getElementById('text-entry');
+  textField.addEventListener('input', () => doPredict(predict));
 }
 
 function disableLoadModelButtons() {
   document.getElementById('load-model').style.display = 'none';
 }
 
-function scale(n) {
-  return parseInt(n*255.0);
-}
-
 function doPredict(predict) {
   const textField = document.getElementById('text-entry');
   const result = predict(textField.value);
-  color_string = "RGB values: ";
-  console.log(result.score);
-  var r = result.score[0], g = result.score[1], b = result.score[2];
-  r = scale(r);
-  g = scale(g);
-  b = scale(b);
+  //score_string = "Class scores: <br>";
+  var table = "<table>";
   
-  var score_string = "Predicted RGB: ("
-  console.log("r: " + r + ", g: " + g + ", b: b");
+  for (var x in result.score) {
+    table += "<tr style='padding:20px'>";
+    table += "<td>"+book_names[x] +"</td><td>"+result.score[x].toFixed(4)+"</td>";
+    //score_string += x + ") " + book_names[x] + " ->  " + result.score[x].toFixed(4) + "<br>"
+    table += "</tr>";
+  }
+  table += "</table>"
+  
+  //console.log(score_string);
   status(
-      score_string + r + ',' + g + ',' + b + ')<br>' + 'Elapsed: ' + result.elapsed.toFixed(4) + ' ms');
-  color(r, g, b);
+      table + '<p>Elapsed: ' + result.elapsed.toFixed(4) + ' ms</p>');
 }
 
 function prepUI(predict) {
   setPredictFunction(predict);
-  /*
   const testExampleSelect = document.getElementById('example-select');
   testExampleSelect.addEventListener('change', () => {
     settextField(examples[testExampleSelect.value], predict);
   });
   settextField(examples['example1'], predict);
-  */
 }
 
 async function urlExists(url) {
@@ -129,7 +133,7 @@ class Classifier {
     const inputText =
         text.trim().toLowerCase().replace(/(\.|\,|\!)/g, '').split(' ');
     // Look up word indices.
-    const inputBuffer = tf.buffer([0, this.maxLen], 'float32');
+    const inputBuffer = tf.buffer([1, this.maxLen], 'float32');
     for (let i = 0; i < inputText.length; ++i) {
       const word = inputText[i];
       inputBuffer.set(this.wordIndex[word], 0, i);
