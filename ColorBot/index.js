@@ -31,8 +31,8 @@ function settextField(text, predict) {
 }
 
 function setPredictFunction(predict) {
-  const textField = document.getElementById('text-entry');
-  textField.addEventListener('input', () => doPredict(predict));
+  const colorButton = document.getElementById('display-color');
+  colorButton.addEventListener('click', () => doPredict(predict));
 }
 
 function disableLoadModelButtons() {
