@@ -6,19 +6,11 @@ const HOSTED_URLS = {
       'model_js/metadata.json'
 };
 
-const book_names = {
-  "0": "Austen Emma", 
-  "1": "Shakespeare",
-  "2": "Moby Dick",
-  "3": "Bible"
+function color(r, g, b) {
+  var color = "rgb(" + r + "," + g + "," + b + ")";
+  document.getElementById('color-space').style.backgroundColor=color;
 }
 
-const examples = {
-  'example1': "Mrs. Martin had told her one day (and there was a blush as she said it) that it was impossible for anybody to be a better son and therefore she was sure, whenever he married, he would make a good husband.",
-  'example2': "Enter Rosse, with an old man.",
-  'example3': "If you'll excuse me, he said, I think I will go home.",
-  'example4': "God is our refuge and strength, an ever-present help in trouble."
-};
 
 function status(statusText) {
   console.log(statusText);
@@ -39,31 +31,33 @@ function settextField(text, predict) {
 }
 
 function setPredictFunction(predict) {
-  const textField = document.getElementById('text-entry');
-  textField.addEventListener('input', () => doPredict(predict));
+  const colorButton = document.getElementById('display-color');
+  colorButton.addEventListener('click', () => doPredict(predict));
 }
 
 function disableLoadModelButtons() {
   document.getElementById('load-model').style.display = 'none';
 }
 
+function scale(n) {
+  return parseInt(n*255.0);
+}
+
 function doPredict(predict) {
   const textField = document.getElementById('text-entry');
   const result = predict(textField.value);
-  //score_string = "Class scores: <br>";
-  var table = "<table>";
+  color_string = "RGB values: ";
+  console.log(result.score);
+  var r = result.score[0], g = result.score[1], b = result.score[2];
+  r = scale(r);
+  g = scale(g);
+  b = scale(b);
   
-  for (var x in result.score) {
-    table += "<tr style='padding:20px'>";
-    table += "<td>"+book_names[x] +"</td><td>"+result.score[x].toFixed(4)+"</td>";
-    //score_string += x + ") " + book_names[x] + " ->  " + result.score[x].toFixed(4) + "<br>"
-    table += "</tr>";
-  }
-  table += "</table>"
-  
-  //console.log(score_string);
+  var score_string = "Predicted RGB: ("
+  console.log("r: " + r + ", g: " + g + ", b: b");
   status(
-      table + '<p>Elapsed: ' + result.elapsed.toFixed(4) + ' ms</p>');
+      score_string + r + ',' + g + ',' + b + ')<br>' + 'Elapsed: ' + result.elapsed.toFixed(4) + ' ms');
+  color(r, g, b);
 }
 
 function prepUI(predict) {
