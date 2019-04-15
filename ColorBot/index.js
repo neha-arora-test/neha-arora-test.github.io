@@ -53,9 +53,10 @@ function doPredict(predict) {
   g = scale(g);
   b = scale(b);
   
+  var score_string = "Predicted RGB: ("
   console.log("r: " + r + ", g: " + g + ", b: b");
   status(
-      score_string + r + ',' + g + ',' + b + '<br>' + 'Elapsed: ' + result.elapsed.toFixed(4) + ' ms');
+      score_string + r + ',' + g + ',' + b + ')<br>' + 'Elapsed: ' + result.elapsed.toFixed(4) + ' ms');
   color();
 }
 
