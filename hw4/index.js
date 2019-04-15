@@ -14,7 +14,7 @@ const book_names = {
 }
 
 const examples = {
-  'example1': "I am very fond of hearing Ms Bates talk.",
+  'example1': "There, I was quite right.",
   'example2': "Enter Rosse, with an old man.",
   'example3': "If you'll excuse me, he said, I think I will go home.",
   'example4': "So Michael left David down through a window, : and he went, and fled, and escaped."
