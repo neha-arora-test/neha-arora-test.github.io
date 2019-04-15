@@ -54,7 +54,7 @@ function doPredict(predict) {
   b = scale(b);
   
   var score_string = "Predicted RGB: ("
-  console.log("r: " + r + ", g: " + g + ", b: b");
+  console.log("r: " + r + ", g: " + g + ", b: " + b);
   status(
       score_string + r + ',' + g + ',' + b + ')<br>' + 'Elapsed: ' + result.elapsed.toFixed(4) + ' ms');
   color(r, g, b);
@@ -136,7 +136,7 @@ class Classifier {
       console.log(word, this.wordIndex[word], inputBuffer);
     }
     const input = inputBuffer.toTensor();
-    //console.log(input);
+    console.log(input);
 
     status('Running inference');
     const beginMs = performance.now();
